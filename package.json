@@ -1,6 +1,6 @@
 {
   "name": "ai-text-check",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Detect AI-generated writing tells, grammar issues, and synthetic typography in JavaScript and TypeScript projects.",
   "license": "MIT",
   "author": "Pritam Ghosh <contact.meghoshpritam@gmail.com>",
