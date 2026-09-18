@@ -1,0 +1,5 @@
+extends: existence
+message: "Generic opener (“in today's world”)."
+level: warning
+tokens:
+  - '\bin today(?:''s|’s) (?:fast-paced |digital |modern |ever-evolving |ever-changing |rapidly changing )*world\b'

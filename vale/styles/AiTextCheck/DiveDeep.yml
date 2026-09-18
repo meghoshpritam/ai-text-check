@@ -1,0 +1,5 @@
+extends: existence
+message: "Overused AI phrasing around “dive/delve”."
+level: warning
+tokens:
+  - '\b(?:delve|delving|dive deep|dives into|deep dive)\b'

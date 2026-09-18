@@ -1,0 +1,5 @@
+extends: existence
+message: "Stock AI transition (“furthermore”, “moreover”)."
+level: warning
+tokens:
+  - '\b(?:furthermore|moreover|additionally|in addition,?)\b'

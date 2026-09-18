@@ -1,0 +1,5 @@
+extends: existence
+message: "Corporate verb (“leverage”, “utilize”). Prefer “use”."
+level: warning
+tokens:
+  - '\b(?:leverage|leveraging|utilize|utilizing)\b'

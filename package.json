@@ -1,0 +1,113 @@
+{
+  "name": "ai-text-check",
+  "version": "1.0.0",
+  "description": "Detect AI-generated writing tells, grammar issues, and synthetic typography in JavaScript and TypeScript projects.",
+  "license": "MIT",
+  "author": "Pritam Ghosh <contact.meghoshpritam@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meghoshpritam/ai-text-check.git"
+  },
+  "bugs": {
+    "url": "https://github.com/meghoshpritam/ai-text-check/issues"
+  },
+  "homepage": "https://github.com/meghoshpritam/ai-text-check#readme",
+  "keywords": [
+    "ai-detection",
+    "ai-writing",
+    "grammar",
+    "linter",
+    "prose",
+    "markdown",
+    "typescript",
+    "javascript",
+    "vale",
+    "slop-gate",
+    "readability",
+    "content-quality"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./node": {
+      "import": {
+        "types": "./dist/node.d.ts",
+        "default": "./dist/node.js"
+      },
+      "require": {
+        "types": "./dist/node.d.cts",
+        "default": "./dist/node.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "ai-text-check": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "vale",
+    "README.md",
+    "LICENSE",
+    "SOURCES.md",
+    "slop-gate.config.json"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup && node -e \"require('fs').chmodSync('dist/cli.js', 0o755)\"",
+    "clean": "rm -rf dist coverage",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run lint && npm run format:check && npm run test",
+    "prepublishOnly": "npm run check && npm run build"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "@types/node": "^22.18.1",
+    "@types/write-good": "^1.0.3",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.43.0",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "@veldica/prose-linter": "^1.1.3",
+    "@vvago/vale": "^3.22.0",
+    "clean-writing-lint": "^0.1.0",
+    "is-this-ai-slop": "^0.1.0",
+    "marked": "^15.0.12",
+    "retext-english": "^5.0.0",
+    "retext-passive": "^5.0.0",
+    "retext-readability": "^8.0.0",
+    "retext-repeated-words": "^5.0.0",
+    "retext-simplify": "^8.0.0",
+    "retext-stringify": "^4.0.0",
+    "slop-gate": "^0.5.0",
+    "unified": "^11.0.5",
+    "write-good": "^1.0.8"
+  }
+}

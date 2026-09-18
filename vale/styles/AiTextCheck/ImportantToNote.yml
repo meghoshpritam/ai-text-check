@@ -1,0 +1,5 @@
+extends: existence
+message: "Filler lead-in (“it is important to note”)."
+level: warning
+tokens:
+  - '\b(?:it(?:''s|’s) (?:important|worth|crucial) to note that|it should be noted that)\b'
