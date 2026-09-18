@@ -64,6 +64,26 @@ describe("AI polish rules", () => {
     );
   });
 
+  it("flags emoji by default and honors ignoreEmojis", () => {
+    const flagged = checkText("Ship it today 🚀 with confidence.", {
+      format: "plain",
+      config: { engines: polish },
+    });
+    expect(flagged.issues.some((issue) => issue.rule === "ai-emojis")).toBe(
+      true,
+    );
+
+    const ignored = checkText("Ship it today 🚀 with confidence.", {
+      format: "plain",
+      config: { ignoreEmojis: true, engines: polish },
+    });
+    expect(ignored.issues.some((issue) => issue.rule === "ai-emojis")).toBe(
+      false,
+    );
+    expect(resolveConfig({ ignoreEmojis: true }).ignoreEmojis).toBe(true);
+    expect(resolveConfig({}).ignoreEmojis).toBe(false);
+  });
+
   it("skips polish AI tells when the polish engine is off", () => {
     const report = checkText("Please delve into the logs.", {
       format: "plain",

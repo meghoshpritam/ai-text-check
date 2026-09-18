@@ -278,6 +278,15 @@ export function validateUserConfig(value: unknown): {
     }
   }
 
+  const ignoreEmojis = expectBoolean(
+    value.ignoreEmojis,
+    "ignoreEmojis",
+    errors,
+  );
+  if (ignoreEmojis !== undefined) {
+    config.ignoreEmojis = ignoreEmojis;
+  }
+
   if (value.include !== undefined) {
     if (!isStringArray(value.include)) {
       errors.push("include must be an array of strings");
@@ -417,6 +426,7 @@ export function validateUserConfig(value: unknown): {
     "failOn",
     "minScore",
     "ignoreRules",
+    "ignoreEmojis",
     "include",
     "exclude",
     "extensions",
@@ -442,7 +452,14 @@ export function resolveConfig(user: UserConfig = {}): ResolvedConfig {
     format: user.format ?? "auto",
     failOn: user.failOn ?? "warn",
     minScore: user.minScore ?? 0,
-    ignoreRules: user.ignoreRules ?? [],
+    ignoreRules: (() => {
+      const rules = [...(user.ignoreRules ?? [])];
+      if (user.ignoreEmojis ?? false) {
+        rules.push("ai-emojis");
+      }
+      return rules;
+    })(),
+    ignoreEmojis: user.ignoreEmojis ?? false,
     include: user.include ?? [],
     exclude: user.exclude ?? [],
     extensions: (user.extensions ?? DEFAULT_EXTENSIONS).map((ext) =>

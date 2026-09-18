@@ -218,6 +218,14 @@ export const AI_PATTERN_RULES: PatternRule[] = [
     minCount: ({ words }) => Math.max(6, words / 250),
   },
   {
+    id: "ai-emojis",
+    category: "ai",
+    pattern: /\p{Extended_Pictographic}/gu,
+    message: "Emoji can read as chatty or AI-styled in formal prose.",
+    severity: "info",
+    suggestion: "Prefer plain prose, or set ignoreEmojis: true to allow them.",
+  },
+  {
     id: "double-space",
     category: "typography",
     pattern: /[^\s] {2,}[^\s]/g,

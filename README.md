@@ -14,18 +14,20 @@ Node.js 20+ is required. The package ships dual **ESM and CommonJS** builds with
 
 ## What it checks
 
-| Engine              | What it catches                                                                                            |
-| ------------------- | ---------------------------------------------------------------------------------------------------------- |
-| **polish**          | Custom AI tells (`delve`, `in today's world`, antithesis), readability, markdown structure/SEO, typography |
-| **slop-gate**       | Vocabulary pack (`nestled`, `treasure trove`, `leverage`, …)                                               |
-| **write-good**      | Weasel words, clichés, wordy phrases, passive voice                                                        |
-| **retext**          | Passive voice, readability grade, simplify, repeated words                                                 |
-| **is-this-ai-slop** | Clichés, buzzwords, em-dash spam, antithesis, sycophancy                                                   |
-| **veldica**         | Stock LLM transitions and AI-style markers                                                                 |
-| **clean-writing**   | Banned constructions, marketing adjectives, filler, intensifiers                                           |
-| **vale**            | Vendored styles: write-good, Google, AiTextCheck, ai-tells, signs-of-ai-writing                            |
+| Engine              | What it catches                                                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **polish**          | Custom AI tells (`delve`, emojis, `in today's world`, antithesis), readability, markdown structure/SEO, typography |
+| **slop-gate**       | Vocabulary pack (`nestled`, `treasure trove`, `leverage`, …)                                                       |
+| **write-good**      | Weasel words, clichés, wordy phrases, passive voice                                                                |
+| **retext**          | Passive voice, readability grade, simplify, repeated words                                                         |
+| **is-this-ai-slop** | Clichés, buzzwords, em-dash spam, antithesis, sycophancy                                                           |
+| **veldica**         | Stock LLM transitions and AI-style markers                                                                         |
+| **clean-writing**   | Banned constructions, marketing adjectives, filler, intensifiers                                                   |
+| **vale**            | Vendored styles: write-good, Google, AiTextCheck, ai-tells, signs-of-ai-writing                                    |
 
 Safe auto-fixes can strip filler openers and collapse extra whitespace without rewriting code fences.
+
+Emoji in prose is treated as an AI tell (`ai-emojis`). Set `ignoreEmojis: true` or pass `--ignore-emojis` to allow them; the ignore flag is off by default.
 
 ## TypeScript
 
@@ -111,6 +113,7 @@ npx ai-text-check init
 | `--no-slop`                             | Skip slop-gate and is-this-ai-slop |
 | `--no-write-good`                       | Skip write-good                    |
 | `--no-retext`                           | Skip retext                        |
+| `--ignore-emojis`                       | Allow emojis (skip `ai-emojis`)    |
 | `--ignore-rule ID`                      | Skip a rule (repeatable)           |
 
 Exit code `1` when issues meet the fail threshold.
@@ -126,6 +129,7 @@ Exit code `1` when issues meet the fail threshold.
   "minScore": 0,
   "extensions": [".md", ".mdx", ".markdown", ".txt"],
   "ignoreRules": [],
+  "ignoreEmojis": false,
   "checks": {
     "ai": true,
     "grammar": true,

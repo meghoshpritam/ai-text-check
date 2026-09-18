@@ -30,6 +30,7 @@ describe("parseArgs", () => {
       "--verbose",
       "--vale",
       "--slop",
+      "--ignore-emojis",
       "--min-score",
       "70",
       "--fail-on",
@@ -55,6 +56,7 @@ describe("parseArgs", () => {
     expect(options.verbose).toBe(true);
     expect(options.vale).toBe(true);
     expect(options.slop).toBe(true);
+    expect(options.ignoreEmojis).toBe(true);
     expect(options.minScore).toBe(70);
     expect(options.failOn).toBe("info");
     expect(options.preset).toBe("strict");
@@ -63,6 +65,12 @@ describe("parseArgs", () => {
     expect(options.configPath).toBe("./ai-text-check.config.json");
     expect(options.paths).toEqual(["docs"]);
     expect(options.valeArgs).toEqual(["--minAlertLevel", "error"]);
+    expect(toUserConfig(options).ignoreEmojis).toBe(true);
+  });
+
+  it("leaves ignoreEmojis off by default", () => {
+    expect(parseArgs(["docs"]).ignoreEmojis).toBe(false);
+    expect(toUserConfig(parseArgs(["docs"])).ignoreEmojis).toBeUndefined();
   });
 
   it("turns optional engines off", () => {

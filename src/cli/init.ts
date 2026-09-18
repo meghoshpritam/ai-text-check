@@ -55,7 +55,8 @@ const SAMPLE_CONFIG = `{
   "failOn": "warn",
   "minScore": 0,
   "extensions": [".md", ".mdx", ".markdown", ".txt"],
-  "ignoreRules": []
+  "ignoreRules": [],
+  "ignoreEmojis": false
 }
 `;
 

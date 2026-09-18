@@ -14,9 +14,16 @@ describe("resolveConfig", () => {
     expect(config.engines.vale).toBe(true);
     expect(config.engines.writeGood).toBe(true);
     expect(config.failOn).toBe("warn");
+    expect(config.ignoreEmojis).toBe(false);
     expect(config.extensions).toContain(".md");
     expect(config.seo.titleMin).toBe(20);
     expect(config.readability.longSentenceWords).toBe(35);
+  });
+
+  it("adds ai-emojis to ignoreRules when ignoreEmojis is set", () => {
+    const config = resolveConfig({ ignoreEmojis: true });
+    expect(config.ignoreEmojis).toBe(true);
+    expect(config.ignoreRules).toContain("ai-emojis");
   });
 
   it("normalizes extensions without a leading dot", () => {
@@ -78,6 +85,7 @@ describe("validateUserConfig", () => {
       failOn: "info",
       minScore: 70,
       ignoreRules: ["dive-deep"],
+      ignoreEmojis: true,
       include: ["docs"],
       exclude: ["tmp"],
       extensions: [".md"],
@@ -104,6 +112,7 @@ describe("validateUserConfig", () => {
     });
     expect(errors).toEqual([]);
     expect(config.preset).toBe("strict");
+    expect(config.ignoreEmojis).toBe(true);
     expect(config.engines?.vale).toBe(false);
     expect(config.seo?.titleMin).toBe(10);
   });

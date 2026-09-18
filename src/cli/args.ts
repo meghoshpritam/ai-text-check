@@ -13,6 +13,7 @@ export type CliOptions = {
   slop: boolean;
   writeGood: boolean;
   retext: boolean;
+  ignoreEmojis: boolean;
   minScore?: number;
   failOn?: Severity;
   format?: TextFormat;
@@ -52,6 +53,7 @@ Options:
   --no-slop          Skip slop-gate vocabulary and is-this-ai-slop
   --no-write-good    Skip the write-good grammar engine
   --no-retext        Skip retext (passive, readability, simplify, repeats)
+  --ignore-emojis    Allow emojis (skip the ai-emojis rule; off by default)
   --ignore-rule ID   Ignore a rule (repeatable)
   --config PATH      Path to ai-text-check.config.json
   --help, -h         Show this help
@@ -59,7 +61,8 @@ Options:
   --                 Extra flags after -- are passed to Vale
 
 By default every local engine runs: polish, slop-gate, write-good, retext,
-is-this-ai-slop, Veldica, clean-writing, and Vale.
+is-this-ai-slop, Veldica, clean-writing, and Vale. Emoji in prose is flagged
+as an AI tell unless --ignore-emojis (or ignoreEmojis: true) is set.
 
 Examples:
   ai-text-check content
@@ -81,6 +84,7 @@ export function parseArgs(argv: string[]): CliOptions {
     slop: true,
     writeGood: true,
     retext: true,
+    ignoreEmojis: false,
     ignoreRules: [],
     valeArgs: [],
   };
@@ -147,6 +151,9 @@ export function parseArgs(argv: string[]): CliOptions {
         break;
       case "--no-retext":
         options.retext = false;
+        break;
+      case "--ignore-emojis":
+        options.ignoreEmojis = true;
         break;
       case "--min-score": {
         const value = Number(args[++i]);
@@ -215,6 +222,7 @@ export function toUserConfig(options: CliOptions): UserConfig {
   if (options.failOn) config.failOn = options.failOn;
   if (options.minScore !== undefined) config.minScore = options.minScore;
   if (options.ignoreRules.length > 0) config.ignoreRules = options.ignoreRules;
+  if (options.ignoreEmojis) config.ignoreEmojis = true;
 
   const engines: NonNullable<UserConfig["engines"]> = {};
   if (!options.vale) engines.vale = false;

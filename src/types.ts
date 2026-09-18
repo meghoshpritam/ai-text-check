@@ -115,6 +115,8 @@ export type UserConfig = {
   failOn?: Severity;
   minScore?: number;
   ignoreRules?: string[];
+  /** When true, skip the ai-emojis rule. Default false (emojis are flagged). */
+  ignoreEmojis?: boolean;
   include?: string[];
   exclude?: string[];
   extensions?: string[];
@@ -131,6 +133,7 @@ export type ResolvedConfig = {
   failOn: Severity;
   minScore: number;
   ignoreRules: string[];
+  ignoreEmojis: boolean;
   include: string[];
   exclude: string[];
   extensions: string[];
