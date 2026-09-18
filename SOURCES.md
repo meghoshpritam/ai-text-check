@@ -29,3 +29,6 @@ Skipped after research (not a fit for Node 20 in-process checks):
 Default `checkFiles` order: polish + slop-gate JSON + write-good + retext +
 is-this-ai-slop + Veldica + clean-writing, then Vale JSON merged onto the same
 report.
+
+Licenses for this package and the vendored Vale styles are in [LICENSE](./LICENSE)
+and [NOTICE](./NOTICE).

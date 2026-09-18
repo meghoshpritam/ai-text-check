@@ -1,0 +1,47 @@
+# Keep the published tarball to runtime files listed in package.json "files".
+# This is a safety net if that allowlist is loosened.
+
+# Source, tests, coverage
+src
+test
+coverage
+tmp
+*.log
+
+# Build maps (JS + d.ts maps)
+**/*.map
+
+# Tooling
+*.config.js
+*.config.cjs
+*.config.mjs
+*.config.ts
+tsconfig.json
+tsconfig.*.json
+eslint.config.js
+prettier.config.js
+vitest.config.ts
+tsup.config.ts
+.editorconfig
+.node-version
+.prettierignore
+.gitignore
+.npmignore
+
+# Editor / CI / local
+.cursor
+.idea
+.vscode
+.github
+.DS_Store
+.env
+.env.*
+
+# Package manager noise (npm already omits most of these)
+node_modules
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+bun.lock
+bun.lockb
+*.tgz

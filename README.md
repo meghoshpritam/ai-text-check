@@ -167,4 +167,8 @@ npm run build
 
 ## License
 
-MIT
+[MIT](./LICENSE) © 2026 Pritam Ghosh.
+
+The checker itself, including the custom `AiTextCheck` Vale rules, is MIT. Vendored Vale styles keep their upstream licenses; see [NOTICE](./NOTICE).
+
+`vale/styles/signs-of-ai-writing` is [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).

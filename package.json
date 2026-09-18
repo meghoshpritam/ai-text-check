@@ -61,9 +61,11 @@
   },
   "files": [
     "dist",
+    "!dist/**/*.map",
     "vale",
     "README.md",
     "LICENSE",
+    "NOTICE",
     "SOURCES.md",
     "slop-gate.config.json"
   ],

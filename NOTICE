@@ -1,0 +1,36 @@
+ai-text-check
+Copyright (c) 2026 Pritam Ghosh <contact.meghoshpritam@gmail.com>
+
+This product is licensed under the MIT License. See LICENSE.
+
+The following third-party Vale styles are vendored under vale/styles/ and
+keep their upstream licenses. Copies of those licenses sit next to each style.
+
+Google
+  License: MIT
+  Copyright (c) 2018-2019 Joseph Kato
+  https://github.com/errata-ai/Google
+
+write-good
+  License: MIT
+  Copyright (c) 2019 errata.ai
+  Based on write-good by Brian Ford (Copyright (c) 2014 Brian Ford)
+  https://github.com/errata-ai/write-good
+
+ai-tells
+  License: MIT
+  Copyright (c) 2025-2026 Tony Burns
+  https://github.com/tbhb/vale-ai-tells
+
+signs-of-ai-writing
+  License: Creative Commons Attribution-ShareAlike 4.0 International
+  https://github.com/ammil-industries/vale-signs-of-ai-writing
+  Derived from Wikipedia, "Signs of AI writing"
+  https://creativecommons.org/licenses/by-sa/4.0/
+
+AiTextCheck
+  License: MIT
+  Copyright (c) 2026 Pritam Ghosh
+  Custom Vale rules extracted from mepritam-revamp-26
+
+Runtime npm dependencies retain their own licenses.
