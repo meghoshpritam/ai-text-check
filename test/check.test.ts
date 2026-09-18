@@ -7,6 +7,9 @@ const extraEnginesOff = {
   isThisAiSlop: false,
   veldica: false,
   cleanWriting: false,
+  aiSlopLinter: false,
+  slopDetector: false,
+  proseSlop: false,
   vale: false,
 } as const;
 
@@ -175,6 +178,9 @@ describe("checkText", () => {
         "is-this-ai-slop",
         "veldica",
         "clean-writing",
+        "ai-slop-linter",
+        "slop-detector",
+        "prose-slop",
       ]),
     );
     expect(

@@ -23,6 +23,9 @@ Node.js 20+ is required. The package ships dual **ESM and CommonJS** builds with
 | **is-this-ai-slop** | Clichés, buzzwords, em-dash spam, antithesis, sycophancy                                                           |
 | **veldica**         | Stock LLM transitions and AI-style markers                                                                         |
 | **clean-writing**   | Banned constructions, marketing adjectives, filler, intensifiers                                                   |
+| **ai-slop-linter**  | Wikipedia _Signs of AI writing_ rules with line/column findings                                                    |
+| **slop-detector**   | EQBench SLOP score (vocabulary, contrast patterns, trigrams, tropes)                                               |
+| **prose-slop**      | Vocabulary, punctuation, and document-cadence tells (English)                                                      |
 | **vale**            | Vendored styles: write-good, Google, AiTextCheck, ai-tells, signs-of-ai-writing                                    |
 
 Safe auto-fixes can strip filler openers and collapse extra whitespace without rewriting code fences.
@@ -146,6 +149,9 @@ Exit code `1` when issues meet the fail threshold.
     "isThisAiSlop": true,
     "veldica": true,
     "cleanWriting": true,
+    "aiSlopLinter": true,
+    "slopDetector": true,
+    "proseSlop": true,
     "vale": true
   }
 }
@@ -155,7 +161,7 @@ Presets:
 
 - `default`: every check and every engine
 - `strict`: default plus extra slop-gate punctuation
-- `ai`: AI tells + typography (polish, slop-gate, is-this-ai-slop, Veldica, clean-writing, Vale)
+- `ai`: AI tells + typography (polish, slop-gate, is-this-ai-slop, Veldica, clean-writing, ai-slop-linter, slop-detector, prose-slop, Vale)
 - `grammar`: grammar + readability (write-good, retext, clean-writing, Vale)
 
 ## Scripts

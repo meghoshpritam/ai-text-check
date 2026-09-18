@@ -1,7 +1,10 @@
 import { resolveConfig } from "./config.js";
+import { runAiSlopLinter } from "./engines/ai-slop-linter.js";
 import { runCleanWriting } from "./engines/clean-writing.js";
 import { runIsThisAiSlop } from "./engines/is-this-ai-slop.js";
+import { runProseSlop } from "./engines/prose-slop.js";
 import { runRetext } from "./engines/retext.js";
+import { runSlopDetector } from "./engines/slop-detector.js";
 import { tagEngine, uniqueEngines } from "./engines/tag.js";
 import { runVeldica } from "./engines/veldica.js";
 import { runWriteGood } from "./engines/write-good.js";
@@ -66,6 +69,7 @@ function collectIssues(
   frontmatter: Record<string, unknown>,
   format: "plain" | "markdown",
   config: ResolvedConfig,
+  source: string,
 ): { issues: Issue[]; enginesRun: EngineName[] } {
   const ignoreRules = new Set(config.ignoreRules);
   const issues: Issue[] = [];
@@ -153,6 +157,21 @@ function collectIssues(
     issues.push(...runCleanWriting(body));
   }
 
+  if (config.engines.aiSlopLinter && config.checks.ai) {
+    enginesRun.push("ai-slop-linter");
+    issues.push(...runAiSlopLinter(body, { source }));
+  }
+
+  if (config.engines.slopDetector && config.checks.ai) {
+    enginesRun.push("slop-detector");
+    issues.push(...runSlopDetector(body));
+  }
+
+  if (config.engines.proseSlop && config.checks.ai) {
+    enginesRun.push("prose-slop");
+    issues.push(...runProseSlop(body, { format }));
+  }
+
   return {
     issues: issues.filter((issue) => !ignoreRules.has(issue.rule)),
     enginesRun: uniqueEngines(enginesRun),
@@ -177,6 +196,7 @@ export function checkText(
     parsed.frontmatter,
     format,
     config,
+    source,
   );
   const title = String(parsed.frontmatter.title ?? pathBasename(source));
 

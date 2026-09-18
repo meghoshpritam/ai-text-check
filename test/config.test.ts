@@ -47,6 +47,9 @@ describe("resolveConfig", () => {
     expect(config.engines.slopGate).toBe(false);
     expect(config.engines.isThisAiSlop).toBe(false);
     expect(config.engines.veldica).toBe(false);
+    expect(config.engines.aiSlopLinter).toBe(false);
+    expect(config.engines.slopDetector).toBe(false);
+    expect(config.engines.proseSlop).toBe(false);
     expect(config.engines.writeGood).toBe(true);
     expect(config.engines.retext).toBe(true);
   });

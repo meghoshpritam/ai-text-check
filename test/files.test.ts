@@ -33,6 +33,9 @@ describe("file checks", () => {
           isThisAiSlop: false,
           veldica: false,
           cleanWriting: false,
+          aiSlopLinter: false,
+          slopDetector: false,
+          proseSlop: false,
         },
       },
     });
@@ -66,6 +69,9 @@ describe("file checks", () => {
           isThisAiSlop: false,
           veldica: false,
           cleanWriting: false,
+          aiSlopLinter: false,
+          slopDetector: false,
+          proseSlop: false,
         },
       },
     });

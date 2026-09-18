@@ -18,17 +18,22 @@ API key. Vale (`@vvago/vale`) is the prose engine the user referred to as Vale
 | is-this-ai-slop                                                                        | `is-this-ai-slop` (`analyze()`)                                                                          |
 | Veldica AI markers                                                                     | `@veldica/prose-linter` (`inventoryMarkers()`)                                                           |
 | Clean Writing / STE subset                                                             | `clean-writing-lint` (`lint()`), with contraction and 20-word sentence rules off                         |
+| ai-slop-linter                                                                         | `ai-slop-linter` (`lintText()`) — Wikipedia Signs of AI writing                                          |
+| slop-detector (EQBench)                                                                | `slop-detector` scoring assets + sync adapter (`runSlopDetector`)                                        |
+| prose-slop                                                                             | `prose-slop` (`check()`) — EN vocabulary / cadence                                                       |
 
 Skipped after research (not a fit for Node 20 in-process checks):
 
 - `slopsift` / WritingLint — requires Node 24+
-- `slopless` — textlint-only, async
+- `slopless` — textlint-only, async, Node ≥22.13
 - `wsc-lint` / `tacheles` — CLI-only, no stable in-process API
+- `smellcheck` (npm) — agent skill / Markdown rules only; does not scan text
+- `llm-slop-detector` — VS Code–centric, awkward as a library dependency
 - Hosted classifiers (GPTZero, Originality, etc.) — need secrets / upload text
 
 Default `checkFiles` order: polish + slop-gate JSON + write-good + retext +
-is-this-ai-slop + Veldica + clean-writing, then Vale JSON merged onto the same
-report.
+is-this-ai-slop + Veldica + clean-writing + ai-slop-linter + slop-detector +
+prose-slop, then Vale JSON merged onto the same report.
 
 Licenses for this package and the vendored Vale styles are in [LICENSE](./LICENSE)
 and [NOTICE](./NOTICE).

@@ -50,6 +50,9 @@ const ENGINE_PRESETS: Record<PresetName, Required<EnginesConfig>> = {
     isThisAiSlop: true,
     veldica: true,
     cleanWriting: true,
+    aiSlopLinter: true,
+    slopDetector: true,
+    proseSlop: true,
     vale: true,
   },
   strict: {
@@ -60,6 +63,9 @@ const ENGINE_PRESETS: Record<PresetName, Required<EnginesConfig>> = {
     isThisAiSlop: true,
     veldica: true,
     cleanWriting: true,
+    aiSlopLinter: true,
+    slopDetector: true,
+    proseSlop: true,
     vale: true,
   },
   ai: {
@@ -70,6 +76,9 @@ const ENGINE_PRESETS: Record<PresetName, Required<EnginesConfig>> = {
     isThisAiSlop: true,
     veldica: true,
     cleanWriting: true,
+    aiSlopLinter: true,
+    slopDetector: true,
+    proseSlop: true,
     vale: true,
   },
   grammar: {
@@ -80,6 +89,9 @@ const ENGINE_PRESETS: Record<PresetName, Required<EnginesConfig>> = {
     isThisAiSlop: false,
     veldica: false,
     cleanWriting: true,
+    aiSlopLinter: false,
+    slopDetector: false,
+    proseSlop: false,
     vale: true,
   },
 };
@@ -103,6 +115,9 @@ const ENGINE_KEYS = [
   "isThisAiSlop",
   "veldica",
   "cleanWriting",
+  "aiSlopLinter",
+  "slopDetector",
+  "proseSlop",
   "vale",
 ] as const;
 

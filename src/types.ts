@@ -11,6 +11,9 @@ export type EngineName =
   | "is-this-ai-slop"
   | "veldica"
   | "clean-writing"
+  | "ai-slop-linter"
+  | "slop-detector"
+  | "prose-slop"
   | "vale";
 
 export type TextFormat = "auto" | "plain" | "markdown";
@@ -83,6 +86,9 @@ export type EnginesConfig = {
   isThisAiSlop?: boolean;
   veldica?: boolean;
   cleanWriting?: boolean;
+  aiSlopLinter?: boolean;
+  slopDetector?: boolean;
+  proseSlop?: boolean;
   vale?: boolean;
 };
 

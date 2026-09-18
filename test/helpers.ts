@@ -9,6 +9,9 @@ export function onlyEngines(enabled: EnginesConfig = {}): EnginesConfig {
     isThisAiSlop: false,
     veldica: false,
     cleanWriting: false,
+    aiSlopLinter: false,
+    slopDetector: false,
+    proseSlop: false,
     vale: false,
     ...enabled,
   };

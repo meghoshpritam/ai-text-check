@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { checkText } from "../src/index.js";
+import { runAiSlopLinter } from "../src/engines/ai-slop-linter.js";
 import { runCleanWriting } from "../src/engines/clean-writing.js";
 import { runIsThisAiSlop } from "../src/engines/is-this-ai-slop.js";
+import { runProseSlop } from "../src/engines/prose-slop.js";
 import { runRetext } from "../src/engines/retext.js";
+import { runSlopDetector } from "../src/engines/slop-detector.js";
 import { tagEngine, uniqueEngines } from "../src/engines/tag.js";
 import { valeIssuesForFile } from "../src/engines/vale.js";
 import { runVeldica } from "../src/engines/veldica.js";
@@ -99,6 +102,42 @@ describe("clean-writing engine", () => {
     expect(issues.some((issue) => issue.rule === "cws-contraction")).toBe(
       false,
     );
+  });
+});
+
+describe("ai-slop-linter engine", () => {
+  it("flags Wikipedia-sourced AI writing tells", () => {
+    const issues = runAiSlopLinter(
+      "It's not just a product — it's a comprehensive solution that will delve into the details.",
+    );
+    expect(issues.length).toBeGreaterThan(0);
+    expect(issues.every((issue) => issue.engine === "ai-slop-linter")).toBe(
+      true,
+    );
+    expect(issues.every((issue) => issue.rule.startsWith("asl-"))).toBe(true);
+  });
+});
+
+describe("slop-detector engine", () => {
+  it("scores EQBench slop signals", () => {
+    const issues = runSlopDetector(SLOP_TEXT);
+    expect(issues.every((issue) => issue.engine === "slop-detector")).toBe(
+      true,
+    );
+    expect(issues.some((issue) => issue.rule.startsWith("eqbench-"))).toBe(
+      true,
+    );
+  });
+});
+
+describe("prose-slop engine", () => {
+  it("flags vocabulary and character tells", () => {
+    const issues = runProseSlop(
+      "In today's world we leverage a seamless tapestry of ideas — and delve deeper.",
+    );
+    expect(issues.length).toBeGreaterThan(0);
+    expect(issues.every((issue) => issue.engine === "prose-slop")).toBe(true);
+    expect(issues.every((issue) => issue.rule.startsWith("prose-"))).toBe(true);
   });
 });
 

@@ -61,8 +61,9 @@ Options:
   --                 Extra flags after -- are passed to Vale
 
 By default every local engine runs: polish, slop-gate, write-good, retext,
-is-this-ai-slop, Veldica, clean-writing, and Vale. Emoji in prose is flagged
-as an AI tell unless --ignore-emojis (or ignoreEmojis: true) is set.
+is-this-ai-slop, Veldica, clean-writing, ai-slop-linter, slop-detector,
+prose-slop, and Vale. Emoji in prose is flagged as an AI tell unless
+--ignore-emojis (or ignoreEmojis: true) is set.
 
 Examples:
   ai-text-check content
